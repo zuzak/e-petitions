@@ -54,6 +54,4 @@ Rails.application.configure do
 
   # Use webmock to disable net connections except for localhost and exceptions
   WebMock.disable_net_connect!(allow_localhost: true)
-
-  config.active_job.queue_adapter = :test
 end
