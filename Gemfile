@@ -35,7 +35,8 @@ gem 'paperclip'
 gem 'maxminddb'
 gem 'redcarpet'
 
-gem 'aws-sdk', '~> 2.0'
+gem 'aws-sdk-codedeploy'
+gem 'aws-sdk-s3'
 
 group :development, :test do
   gem 'rspec-rails'
