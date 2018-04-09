@@ -39,6 +39,8 @@ gem 'aws-sdk-codedeploy'
 gem 'aws-sdk-s3'
 
 group :development, :test do
+  gem 'brakeman', require: false
+  gem 'bundler-audit'
   gem 'rspec-rails'
   gem 'jasmine-rails'
   gem 'pry'
