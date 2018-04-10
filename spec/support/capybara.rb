@@ -38,3 +38,7 @@ Capybara.default_max_wait_time = 5
 Capybara.add_selector(:form_group) do
   xpath { |index| "//form/div[contains(@class, 'form-group')][#{index}]" }
 end
+
+Capybara.add_selector(:noindex) do
+  xpath { "//meta[@name='robots' and @content='noindex']" }
+end
