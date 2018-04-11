@@ -361,7 +361,11 @@ FactoryBot.define do
     response_threshold_reached_at { 1.week.ago }
   end
 
-  factory :responded_petition, :parent => :awaiting_petition do
+  factory :awaiting_response_petition, :parent => :open_petition do
+    response_threshold_reached_at { 1.week.ago }
+  end
+
+  factory :responded_petition, :parent => :awaiting_response_petition do
     government_response_at { 1.week.ago }
 
     transient do
@@ -593,7 +597,7 @@ FactoryBot.define do
   end
 
   factory :government_response do
-    association :petition, factory: :awaiting_petition
+    association :petition, factory: :awaiting_response_petition
     details "Government Response Details"
     summary "Government Response Summary"
   end

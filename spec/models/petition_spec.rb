@@ -255,7 +255,7 @@ RSpec.describe Petition, type: :model do
       end
 
       context "when a petition has reached the response threshold" do
-        let(:petition) { FactoryBot.create(:awaiting_petition) }
+        let(:petition) { FactoryBot.create(:awaiting_response_petition) }
 
         it "is included in the list" do
           expect(Petition.awaiting_response).to include(petition)
@@ -1848,7 +1848,7 @@ RSpec.describe Petition, type: :model do
     end
 
     context "when response_threshold_reached_at is present" do
-      let(:petition) { FactoryBot.create(:awaiting_petition) }
+      let(:petition) { FactoryBot.create(:awaiting_response_petition) }
 
       before do
         expect(Site).not_to receive(:threshold_for_response)

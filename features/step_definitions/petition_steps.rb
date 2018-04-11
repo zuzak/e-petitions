@@ -381,7 +381,7 @@ end
 
 Given(/^there are (\d+) petitions awaiting a government response$/) do |response_count|
   response_count.times do |count|
-    petition = FactoryBot.create(:awaiting_petition, :action => "Petition #{count}")
+    petition = FactoryBot.create(:awaiting_response_petition, :action => "Petition #{count}")
   end
 end
 
@@ -402,7 +402,7 @@ Given(/^a petition "(.*?)" exists with government response$/) do |action|
 end
 
 Given(/^a petition "(.*?)" exists awaiting government response$/) do |action|
-  @petition = FactoryBot.create(:awaiting_petition, action: action)
+  @petition = FactoryBot.create(:awaiting_response_petition, action: action)
 end
 
 Given(/^a petition "(.*?)" exists with notes "([^"]*)"$/) do |action, notes|
