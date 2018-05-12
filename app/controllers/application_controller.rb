@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
   end
 
   def site_protected?
-    Site.protected? unless request.local?
+    Site.protected?
   end
 
   def parliament_dissolved?

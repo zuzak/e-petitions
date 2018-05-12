@@ -56,42 +56,36 @@ RSpec.describe ApplicationController, type: :controller do
   end
 
   context "when the site is protected" do
-    context "and the request is local" do
-      before do
-        expect(request).to receive(:local?).and_return(true)
-        expect(Site).not_to receive(:protected?)
-      end
-
-      it "does not request authentication" do
-        get :index
-        expect(response).to have_http_status(200)
-      end
+    before do
+      expect(Site).to receive(:protected?).and_return(true)
     end
 
-    context "and the request is not local" do
-      before do
-        expect(request).to receive(:local?).and_return(false)
-        expect(Site).to receive(:protected?).and_return(true)
-      end
-
-      it "requests authentication" do
-        get :index
-        expect(response).to have_http_status(401)
-      end
+    it "requests authentication" do
+      get :index
+      expect(response).to have_http_status(401)
     end
 
-    context "and the request is authenticated" do
+    context "and when the request is authenticated" do
       before do
         http_authentication "username", "password"
-
-        expect(request).to receive(:local?).and_return(false)
-        expect(Site).to receive(:protected?).and_return(true)
         expect(Site).to receive(:authenticate).with("username", "password").and_return(true)
       end
 
       it "responds with 200 OK" do
         get :index
         expect(response).to have_http_status(200)
+      end
+    end
+
+    context "and when the request is not authenticated" do
+      before do
+        http_authentication "username", "password"
+        expect(Site).to receive(:authenticate).with("username", "password").and_return(false)
+      end
+
+      it "re-requests authentication" do
+        get :index
+        expect(response).to have_http_status(401)
       end
     end
   end
