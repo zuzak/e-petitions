@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Install gems
+bundle install
+
+# Create out test database
+psql -c 'create database epets_test;' -U postgres
+
+# Load the database structure in one go
+RAILS_ENV=test bundle exec rake db:structure:load
+
+# Precompile the error pages so that feature specs can see them
+bundle exec rake errors:precompile

@@ -52,6 +52,8 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'chromedriver-helper'
+  gem 'selenium-webdriver'
   gem 'factory_bot_rails'
   gem 'email_spec'
   gem 'launchy'

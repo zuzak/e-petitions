@@ -27,4 +27,12 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.include(helper, type: :feature)
+
+  config.around(:each, type: :feature) do |example|
+    with_show_exceptions(true) do
+      example.run
+    end
+  end
 end
