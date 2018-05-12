@@ -99,18 +99,17 @@ RSpec.describe ApplicationHelper, type: :helper do
     let(:headers) { helper.request.env }
 
     before do
-      headers["HTTP_HOST"]   = "petition.parliament.test"
+      headers["HTTP_HOST"]   = "test.epetitions.website:3443"
       headers["HTTPS"]       = "on"
-      headers["SERVER_PORT"] = 443
     end
 
     context "when the referer is an internal url" do
       before do
-        headers["HTTP_REFERER"] = "https://petition.parliament.test/petitions/new"
+        headers["HTTP_REFERER"] = "https://test.epetitions.website:3443/petitions/new"
       end
 
       it "returns the referer url" do
-        expect(helper.back_url).to eq("https://petition.parliament.test/petitions/new")
+        expect(helper.back_url).to eq("https://test.epetitions.website:3443/petitions/new")
       end
     end
 
@@ -183,14 +182,14 @@ RSpec.describe ApplicationHelper, type: :helper do
     let(:headers) { helper.request.env }
 
     before do
-      headers["HTTP_HOST"] = "petition.parliament.uk"
+      headers["HTTP_HOST"] = "test.epetitions.website:3443"
       headers["HTTP_X_FORWARDED_PROTO"] = "https"
       headers["PATH_INFO"] = "/petitions"
       headers["QUERY_STRING"] = "utf8=✓&q=foo".force_encoding('binary')
     end
 
     it "returns the original request url" do
-      expect(helper.original_url).to eq("https://petition.parliament.uk/petitions?utf8=✓&q=foo")
+      expect(helper.original_url).to eq("https://test.epetitions.website:3443/petitions?utf8=✓&q=foo")
     end
 
     it "is encoded as UTF-8" do

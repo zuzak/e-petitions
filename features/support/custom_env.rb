@@ -6,8 +6,8 @@ require 'webrick/httpproxy'
 Capybara.javascript_driver = :poltergeist
 Capybara.default_max_wait_time = 5
 Capybara.server_port = 3443
-Capybara.app_host = "https://127.0.0.1:3443"
-Capybara.default_host = "https://petition.parliament.uk"
+Capybara.app_host = "https://test.epetitions.website:3443"
+Capybara.default_host = "https://test.epetitions.website:3443"
 Capybara.default_selector = :xpath
 Capybara.automatic_label_click = true
 
@@ -16,8 +16,7 @@ Capybara.register_driver :poltergeist do |app|
     phantomjs_logger: "/dev/null",
     phantomjs_options: [
       '--ignore-ssl-errors=yes',
-      '--local-to-remote-url-access=yes',
-      '--proxy=127.0.0.1:8443'
+      '--local-to-remote-url-access=yes'
     ]
   )
 end
@@ -27,10 +26,6 @@ Capybara.register_server :epets do |app, port|
 end
 
 Capybara.server = :epets
-
-pid = Process.spawn('bin/local_proxy', out: 'log/proxy.log', err: 'log/proxy.log')
-Process.detach(pid)
-at_exit { Process.kill('INT', pid) }
 
 module CucumberI18n
   def t(*args)
