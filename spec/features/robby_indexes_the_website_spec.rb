@@ -34,7 +34,7 @@ RSpec.feature "Robby indexes the website", js: true do
   # #mark step definitions
 
   def create_open_petition
-    FactoryBot.create(:open_petition, action: "Do something!")
+    create(:open_petition, action: "Do something!")
   end
 
   def expect_page_not_to_have_robots_meta_tag

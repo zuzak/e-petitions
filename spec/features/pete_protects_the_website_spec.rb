@@ -27,7 +27,7 @@ RSpec.feature "Pete protects the website", js: true do
   # #mark step definitions
 
   def create_sysadmin
-    FactoryBot.create(:sysadmin_user, email: "admin@example.com")
+    create(:sysadmin_user, email: "admin@example.com")
   end
 
   def disable_website

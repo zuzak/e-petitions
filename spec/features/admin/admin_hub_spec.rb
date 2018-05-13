@@ -60,11 +60,11 @@ RSpec.feature "Admin hub page", js: true do
   end
 
   def create_moderator
-    FactoryBot.create(:moderator_user, email: "moderator@example.com")
+    create(:moderator_user, email: "moderator@example.com")
   end
 
   def create_petition(factory = "open", *traits, count: 1)
-    count.times { FactoryBot.create(:"#{factory}_petition", *traits) }
+    count.times { create(:"#{factory}_petition", *traits) }
   end
 
   def create_petitions_for_moderation

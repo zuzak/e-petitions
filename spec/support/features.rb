@@ -12,4 +12,5 @@ RSpec.configure do |config|
   end
 
   config.include(helper, type: :feature)
+  config.include(FactoryBot::Syntax::Methods, type: :feature)
 end

@@ -47,8 +47,8 @@ RSpec.feature "Sam signs a petition with Suzie's email address", js: true do
   end
 
   def create_open_petition
-    FactoryBot.create(:open_petition, action: "Do something!")
-    FactoryBot.create(:location, code: "GB", name: "United Kingdom")
+    create(:open_petition, action: "Do something!")
+    create(:location, code: "GB", name: "United Kingdom")
 
     stub_any_api_request
   end
