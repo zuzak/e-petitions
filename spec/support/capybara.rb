@@ -42,3 +42,20 @@ end
 Capybara.add_selector(:noindex) do
   xpath { "//meta[@name='robots' and @content='noindex']" }
 end
+
+Capybara.add_selector(:page_title) do
+  xpath { "//h1[contains(@class, 'page-title')]" }
+end
+
+Capybara.add_selector(:search_petitions) do
+  xpath { "//section[contains(@class, 'search-petitions')]" }
+end
+
+Capybara.add_selector(:search_results) do
+  xpath { "//div[contains(@class, 'search-results')]/ol" }
+end
+
+Capybara.add_selector(:search_result) do
+  xpath { |index| ".//li[#{index}]" }
+end
+

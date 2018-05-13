@@ -2,6 +2,7 @@
   <h2 id="search-petitions-heading">Search petitions</h2>
 
   <%= form_tag search_path, method: 'get', enforce_utf8: false do %>
+    <%= hidden_field_tag :state, state if state %>
     <div class="search-inline">
       <%= search_field_tag 'q', nil, class: 'form-control', id: 'search' %>
       <%= submit_tag 'Search', name: nil, class: 'inline-submit' %>
